@@ -1,0 +1,16 @@
+{
+    "switches":[
+      {
+        "name": "sw1",
+        "ip": "10.1.1.1",
+        "user": "cisco",
+        "password": "cisco"
+      },
+      {
+        "name": "sw2",
+        "ip": "10.2.2.2",
+        "user": "cisco",
+        "password": "cisco"
+      }
+  ]
+}
