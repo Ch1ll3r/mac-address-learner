@@ -30,7 +30,7 @@ from netmiko import ConnectHandler
 
 def learnmacaddress(device):
     sshex = False
-    df2 = pd.DataFrame(columns=["mac", "interface"])
+    db = pd.DataFrame(columns=["mac", "interface"])
 
     try:
         with ConnectHandler(ip=device["host"],
@@ -49,19 +49,27 @@ def learnmacaddress(device):
         for vlan in mactable["mac_table"]["vlans"]:
             for mac in mactable["mac_table"]["vlans"][vlan]["mac_addresses"]:
                 for interface in mactable["mac_table"]["vlans"][vlan]["mac_addresses"][mac]["interfaces"]:
-                    df3 = pd.DataFrame(columns=["mac", "interface"])
-                    df3 = pd.DataFrame([[mac, interface]], columns=["mac", "interface"])
-                    df3 = pd.DataFrame([["0100.0ccc.cccc", "CPU"]], columns=["mac", "interface"])
-                    # check if mac is already in DF
-                    if df3.isin(df2).any():
-                        print("found df3 in df2")
+                    macinterface_entry = pd.DataFrame([[mac, interface]], columns=["mac", "interface"])
+                    log.info("checking for " + macinterface_entry)
+                    # add first Entry
+                    log.info("DB has " + str(len(db)) + " entry/entries")
+                    if db.empty:
+                        log.info("DB empty, adding frist entry")
+                        db.loc[len(db)] = [mac, interface]
+                    # checking if additionals entries are already in the db
+                    elif not db.empty:
+                        log.info("checking for macinterface is in db mac")
+                        # only adding the entry, if there is no entry for the same mac-interface combo yet
 
-                    df2.loc[len(df2)] = [mac, interface]
-
-
-    print("completed df")
-    print(df2)
-    return 0
+                        mask = macinterface_entry[['mac', 'interface']].isin(db[['mac', 'interface']]).all(axis=1)
+                        # Check if any rows are duplicates
+                        if mask.any():
+                            log.info('already found, not adding it')
+                        else:
+                            log.info(macinterface_entry + "is not yet in DB, adding it")
+                            db.loc[len(db)] = [mac, interface]
+    log.info("learn mac address complete, return db")
+    return db
 
 
 def updatedatabase(db):
