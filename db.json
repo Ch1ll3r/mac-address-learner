@@ -1,0 +1,18 @@
+{
+    "switches": [
+      {
+        "host": "10.1.1.1",
+        "interfaces": [
+          {
+            "name": "Gig 1/0/0",
+            "mac": [
+              {
+                "1": "aaaa.bbbb.cccc",
+                "2": "baaa.bbbb.cccc"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

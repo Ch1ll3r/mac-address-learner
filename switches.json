@@ -1,16 +1,12 @@
 {
     "switches":[
       {
+        "device_type": "cisco_ios",
         "name": "sw1",
-        "ip": "10.1.1.1",
-        "user": "cisco",
-        "password": "cisco"
-      },
-      {
-        "name": "sw2",
-        "ip": "10.2.2.2",
-        "user": "cisco",
-        "password": "cisco"
+        "host": "192.168.9.5",
+        "user": "admin",
+        "password": "Start432",
+        "enablepw": "Start432"
       }
   ]
 }
