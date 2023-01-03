@@ -107,4 +107,5 @@ if __name__ == "__main__":
         for switch in data['switches']:
             log.info("learning started for " + switch['host'])
             learnmacaddress(switch)
-    #################################
+#################################
+
