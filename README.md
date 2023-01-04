@@ -38,7 +38,7 @@ $ python3 -m pip3 install -r requirements.txt
 ```
 
 ### Script Configuration
-Edit the script and add your credentials for the switch in switch.json:
+Edit the script and add your credentials for the switch in switches.json:
 ```
 {
     "switches":[
