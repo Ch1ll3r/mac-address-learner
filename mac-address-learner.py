@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging as log
+from logging.handlers import TimedRotatingFileHandler
 import sys
 import pandas as pd
 from netmiko import ConnectHandler
@@ -93,6 +94,17 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     # mandatory arguments
+
+    # setup log
+    log.basicConfig(level=log.INFO,
+                    format='%(asctime)s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    stream=sys.stdout)
+    log_formatter = log.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
+    log_handler = TimedRotatingFileHandler(filename='mac-address-learner.log', when='midnight', interval=1, backupCount=0)
+    log_handler.setFormatter(log_formatter)
+    log.getLogger().addHandler(log_handler)
+
     if not args.file:
         log.error("Exiting. Filename is mandatory.")
         sys.exit(1)
