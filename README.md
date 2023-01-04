@@ -10,7 +10,7 @@ monitor multiple switches, start the script multiple times.
 
 ## Prerequisites
 - [Python requirements installed](#Install-dependencies)
-- [Script Confniguration](#Script Configuration)
+- [Script Confniguration](#Script-Configuration)
 
 ## Installation
 ### Clone the repository
