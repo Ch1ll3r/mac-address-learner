@@ -30,7 +30,9 @@ def learnmacaddress(device):
         with ConnectHandler(ip=device["host"],
                             username=device["user"],
                             password=device["password"],
-                            device_type=device["device_type"]) as connection:
+                            device_type=device["device_type"],
+                            secret=device['secret']) as connection:
+            connection.enable()
             command = "show mac address-table"
             mactable = connection.send_command(command, use_genie=True)
 

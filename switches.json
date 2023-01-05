@@ -3,10 +3,10 @@
       {
         "device_type": "cisco_ios",
         "name": "sw1",
-        "host": "192.168.9.5",
+        "host": "192.168.1.1",
         "user": "admin",
-        "password": "Start432",
-        "enablepw": "Start432"
+        "password": "Cisco",
+        "secret": "Cisco"
       }
   ]
 }
